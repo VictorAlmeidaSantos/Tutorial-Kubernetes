@@ -16,16 +16,16 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: nanajanashia/k8s-demo-app:1.0
+        image: nanajanashia/k8s-demo-app:v1.0
         ports:
         - containerPort: 3000
         env:
-        - name: User_Name
+        - name: USER_NAME
           valueFrom:
             secretKeyRef:
               name: mongo-secret
               key: mongo-user
-        - name: User_PWD
+        - name: USER_PWD
           valueFrom:
             secretKeyRef:
               name: mongo-secret
@@ -42,7 +42,7 @@ metadata:
   name: webapp-service
 spec:
   selector:
-    app.kubernetes.io/name: webapp
+    app: webapp
   type: NodePort
   ports:
     - protocol: TCP
